@@ -1,0 +1,7 @@
+printf '%s' '{"username":"alice","password":"demo-password"}' | curl '--silent' '--show-error' '--noproxy' '*' '--max-time' '10' '-X' 'POST' '-H' 'Content-Type: application/json' '--data-binary' '@-' '-b' 'alice.txt' '-c' 'alice.txt' '-w' '\nHTTP_STATUS:%{http_code}\n' 'http://127.0.0.1:49251/customer/login'
+
+{
+  "message": "Customer successfully logged in.",
+  "username": "alice"
+}
+HTTP_STATUS:200

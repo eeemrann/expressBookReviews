@@ -1,0 +1,10 @@
+curl '--silent' '--show-error' '--noproxy' '*' '--max-time' '10' '-X' 'GET' '-w' '\nHTTP_STATUS:%{http_code}\n' 'http://127.0.0.1:49251/title/Things%20Fall%20Apart'
+
+{
+  "1": {
+    "author": "Chinua Achebe",
+    "title": "Things Fall Apart",
+    "reviews": {}
+  }
+}
+HTTP_STATUS:200

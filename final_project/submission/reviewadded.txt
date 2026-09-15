@@ -1,0 +1,45 @@
+curl '--silent' '--show-error' '--noproxy' '*' '--max-time' '10' '-X' 'PUT' '-b' 'alice.txt' '-c' 'alice.txt' '-w' '\nHTTP_STATUS:%{http_code}\n' 'http://127.0.0.1:49251/customer/auth/review/1?review=A%20wonderful%20book'
+
+{
+  "message": "Review added.",
+  "reviews": {
+    "alice": "A wonderful book"
+  }
+}
+HTTP_STATUS:201
+
+curl '--silent' '--show-error' '--noproxy' '*' '--max-time' '10' '-X' 'PUT' '-b' 'alice.txt' '-c' 'alice.txt' '-w' '\nHTTP_STATUS:%{http_code}\n' 'http://127.0.0.1:49251/customer/auth/review/1?review=An%20excellent%20novel'
+
+{
+  "message": "Review updated.",
+  "reviews": {
+    "alice": "An excellent novel"
+  }
+}
+HTTP_STATUS:200
+
+printf '%s' '{"username":"bob","password":"demo-password"}' | curl '--silent' '--show-error' '--noproxy' '*' '--max-time' '10' '-X' 'POST' '-H' 'Content-Type: application/json' '--data-binary' '@-' '-w' '\nHTTP_STATUS:%{http_code}\n' 'http://127.0.0.1:49251/register'
+
+{
+  "message": "User successfully registered. You can now log in."
+}
+HTTP_STATUS:201
+
+printf '%s' '{"username":"bob","password":"demo-password"}' | curl '--silent' '--show-error' '--noproxy' '*' '--max-time' '10' '-X' 'POST' '-H' 'Content-Type: application/json' '--data-binary' '@-' '-b' 'bob.txt' '-c' 'bob.txt' '-w' '\nHTTP_STATUS:%{http_code}\n' 'http://127.0.0.1:49251/customer/login'
+
+{
+  "message": "Customer successfully logged in.",
+  "username": "bob"
+}
+HTTP_STATUS:200
+
+curl '--silent' '--show-error' '--noproxy' '*' '--max-time' '10' '-X' 'PUT' '-b' 'bob.txt' '-c' 'bob.txt' '-w' '\nHTTP_STATUS:%{http_code}\n' 'http://127.0.0.1:49251/customer/auth/review/1?review=Bobs%20review'
+
+{
+  "message": "Review added.",
+  "reviews": {
+    "alice": "An excellent novel",
+    "bob": "Bobs review"
+  }
+}
+HTTP_STATUS:201

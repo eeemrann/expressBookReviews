@@ -1,0 +1,5 @@
+﻿curl.exe --fail --silent --show-error https://api.github.com/repos/eeemrann/expressBookReviews | ConvertFrom-Json | Select-Object -ExpandProperty parent | Select-Object -ExpandProperty full_name
+
+ibm-developer-skills-network/expressBookReviews
+
+Executed in PowerShell; ConvertFrom-Json and Select-Object extract the same field as jq '.parent.full_name'.

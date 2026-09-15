@@ -1,0 +1,12 @@
+curl '--silent' '--show-error' '--noproxy' '*' '--max-time' '10' '-X' 'GET' '-w' '\nHTTP_STATUS:%{http_code}\n' 'http://127.0.0.1:49251/review/1'
+
+{}
+HTTP_STATUS:200
+
+curl '--silent' '--show-error' '--noproxy' '*' '--max-time' '10' '-X' 'GET' '-w' '\nHTTP_STATUS:%{http_code}\n' 'http://127.0.0.1:49251/review/1'
+
+{
+  "alice": "An excellent novel",
+  "bob": "Bobs review"
+}
+HTTP_STATUS:200

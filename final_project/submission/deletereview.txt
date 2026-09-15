@@ -1,0 +1,23 @@
+curl '--silent' '--show-error' '--noproxy' '*' '--max-time' '10' '-X' 'DELETE' '-b' 'alice.txt' '-c' 'alice.txt' '-w' '\nHTTP_STATUS:%{http_code}\n' 'http://127.0.0.1:49251/customer/auth/review/1'
+
+{
+  "message": "Review deleted.",
+  "reviews": {
+    "bob": "Bobs review"
+  }
+}
+HTTP_STATUS:200
+
+curl '--silent' '--show-error' '--noproxy' '*' '--max-time' '10' '-X' 'GET' '-w' '\nHTTP_STATUS:%{http_code}\n' 'http://127.0.0.1:49251/review/1'
+
+{
+  "bob": "Bobs review"
+}
+HTTP_STATUS:200
+
+curl '--silent' '--show-error' '--noproxy' '*' '--max-time' '10' '-X' 'DELETE' '-b' 'alice.txt' '-c' 'alice.txt' '-w' '\nHTTP_STATUS:%{http_code}\n' 'http://127.0.0.1:49251/customer/auth/review/1'
+
+{
+  "message": "You have no review for this book."
+}
+HTTP_STATUS:404

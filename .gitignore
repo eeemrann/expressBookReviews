@@ -1,4 +1,8 @@
 # Distribution / packaging
 node_modules
+.npm-cache
+.env
+*.log
+cookies*.txt
 
 
